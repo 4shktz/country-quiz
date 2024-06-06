@@ -25,6 +25,42 @@
             </nav>
         </main>
     </section>
+
+    <section class="options-container" id="optionsContainer">
+        <header class="header">
+            <span class="back" id="backBtn">◀ back</span>
+        </header>
+        <main class="options-content">
+            <section class="option-sound">
+                <span>SOUND</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </section>
+            <section class="option">
+                <span>NUMBER OF FLAGS</span>
+                <div class="number-options">
+                    <label><input type="radio" name="flags" value="10">10</label>
+                    <label><input type="radio" name="flags" value="25" checked>25</label>
+                    <label><input type="radio" name="flags" value="50">50</label>
+                    <label><input type="radio" name="flags" value="100">100</label>
+                    <label><input type="radio" name="flags" value="197">197</label>
+                </div>
+            </section>
+            <section class="option">
+                <span>FLAGS</span>
+                <div class="flag-options">
+                    <label>AFRICA <input type="checkbox" class="switch-checkbox" checked><span class="slider-checkbox"></span></label>
+                    <label>ASIA <input type="checkbox" class="switch-checkbox" checked><span class="slider-checkbox"></span></label>
+                    <label>EUROPE <input type="checkbox" class="switch-checkbox" checked><span class="slider-checkbox"></span></label>
+                    <label>NORTH AMERICA <input type="checkbox" class="switch-checkbox" checked><span class="slider-checkbox"></span></label>
+                    <label>SOUTH AMERICA <input type="checkbox" class="switch-checkbox" checked><span class="slider-checkbox"></span></label>
+                    <label>OCEANIA <input type="checkbox" class="switch-checkbox" checked><span class="slider-checkbox"></span></label>
+                </div>
+            </section>
+        </main>
+    </section>
     <script src="main.js"></script>
 </body>
 </html>
