@@ -61,6 +61,28 @@
             </section>
         </main>
     </section>
+
+    <section class="quiz-container" id="quizContainer">
+        <header class="header">
+            <span class="back" id="backToMainBtn">◀ back</span>
+            <span>Score: <span id="score">0</span></span>
+            <span id="questionCounter">1/25</span>
+        </header>
+        <main class="quiz-content">
+            <img src="drapeaux/france.png" alt="Flag" class="flag-image">
+            <nav class="quiz-buttons">
+                <button class="btn quiz-option" data-correct="true">France</button>
+                <button class="btn quiz-option">belize</button>
+                <button class="btn quiz-option">Fiji</button>
+                <button class="btn quiz-option">Kiribati</button>
+                <button class="btn next" id="nextBtn" style="display: none; width: 150px; background-color: yellow; color: black;">Next</button>
+
+            </nav>
+        </main>
+    </section>
+
+    <div id="newQuestionContainer"></div>
+
     <script src="main.js"></script>
 </body>
 </html>
