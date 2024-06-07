@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let score = 0;
     let questionNumber = 1;
-    let totalQuestions = 25;
+    let totalQuestions = 25; 
 
     function resetOptions() {
         const quizOptions = document.querySelectorAll('.quiz-option');
@@ -120,6 +120,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     loadNextFlag();
                 }, 2000); 
             }
+        });
+    });
+
+    const numberOptions = document.querySelectorAll('input[name="flags"]');
+    numberOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            totalQuestions = parseInt(option.value); 
+            questionCounter.textContent = `${questionNumber}/${totalQuestions}`; 
         });
     });
 });
