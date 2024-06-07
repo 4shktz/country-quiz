@@ -1,3 +1,5 @@
+import countries from './flags';
+
 document.addEventListener("DOMContentLoaded", function() {
     const optionsBtn = document.getElementById('optionsBtn');
     const backBtn = document.getElementById('backBtn');
@@ -14,22 +16,69 @@ document.addEventListener("DOMContentLoaded", function() {
     let score = 0;
     let questionNumber = 1;
 
-    optionsBtn.addEventListener('click', function() {
+    function resetOptions() {
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        quizOptions.forEach(option => {
+            option.disabled = false;
+            option.classList.remove('correct', 'incorrect');
+        });
+        nextBtn.style.display = 'none';
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function loadNextFlag() {
+        const randomIndex = Math.floor(Math.random() * countries.length);
+        const selectedCountry = countries[randomIndex];
+
+        flagImage.src = selectedCountry.url;
+
+        const options = document.querySelectorAll('.quiz-option');
+        const correctOptionIndex = Math.floor(Math.random() * options.length);
+        const usedIndices = new Set([randomIndex]);
+
+        options.forEach((option, index) => {
+            if (index === correctOptionIndex) {
+                option.textContent = selectedCountry.name;
+                option.dataset.correct = "true";
+            } else {
+                let randomOptionIndex;
+                do {
+                    randomOptionIndex = Math.floor(Math.random() * countries.length);
+                } while (usedIndices.has(randomOptionIndex));
+                usedIndices.add(randomOptionIndex);
+
+                option.textContent = countries[randomOptionIndex].name;
+                option.dataset.correct = "false";
+            }
+        });
+
+        resetOptions();
+    }
+
+    optionsBtn.addEventListener('click', () => {
         mainContainer.style.display = 'none';
         optionsContainer.style.display = 'block';
     });
 
-    backBtn.addEventListener('click', function() {
+    backBtn.addEventListener('click', () => {
         optionsContainer.style.display = 'none';
         mainContainer.style.display = 'block';
     });
 
-    playBtn.addEventListener('click', function() {
+    playBtn.addEventListener('click', () => {
         mainContainer.style.display = 'none';
         quizContainer.style.display = 'block';
+        loadNextFlag();
     });
 
-    backToMainBtn.addEventListener('click', function() {
+    backToMainBtn.addEventListener('click', () => {
         quizContainer.style.display = 'none';
         mainContainer.style.display = 'block';
     });
@@ -41,9 +90,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 const isCorrect = this.dataset.correct === "true";
 
                 quizOptions.forEach(option => {
-                    option.disabled = true; 
+                    option.disabled = true;
                     if (option.dataset.correct === "true") {
                         option.classList.add('correct');
+                    } else {
+                        option.classList.add('incorrect');
                     }
                 });
 
@@ -55,18 +106,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
                 scoreDisplay.textContent = score;
-                nextBtn.style.display = 'block'; 
-                nextBtn.addEventListener('click', nextQuestion); 
+                nextBtn.style.display = 'block';
             }
         });
     });
 
-    function nextQuestion() {
+    nextBtn.addEventListener('click', () => {
         questionNumber++;
         questionCounter.textContent = `${questionNumber}/25`;
-        nextBtn.removeEventListener('click', nextQuestion);
-        flagImage.src = 'drapeaux/suisse.png';
-        nextBtn.style.display = 'none'; 
-        
-    }
+        loadNextFlag();
+    });
 });

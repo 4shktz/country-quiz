@@ -16,7 +16,7 @@
                 Country Quiz
             </h1>
             <p class="description">
-                Guess the flags of 197 countries: from Afghanistan to Zimbabwe
+                Guess the flags of 199 countries: from Afghanistan to Zimbabwe
             </p>
             <nav class="buttons">
                 <button class="btn play" id="playBtn">play</button>
@@ -45,7 +45,7 @@
                     <label><input type="radio" name="flags" value="25" checked>25</label>
                     <label><input type="radio" name="flags" value="50">50</label>
                     <label><input type="radio" name="flags" value="100">100</label>
-                    <label><input type="radio" name="flags" value="197">197</label>
+                    <label><input type="radio" name="flags" value="199">199</label>
                 </div>
             </section>
             <section class="option">
@@ -69,20 +69,19 @@
             <span id="questionCounter">1/25</span>
         </header>
         <main class="quiz-content">
-            <img src="drapeaux/france.png" alt="Flag" class="flag-image">
+            <img src="" alt="Flag" class="flag-image">
             <nav class="quiz-buttons">
                 <button class="btn quiz-option" data-correct="true">France</button>
                 <button class="btn quiz-option">belize</button>
                 <button class="btn quiz-option">Fiji</button>
                 <button class="btn quiz-option">Kiribati</button>
                 <button class="btn next" id="nextBtn" style="display: none; width: 150px; background-color: yellow; color: black;">Next</button>
-
             </nav>
         </main>
     </section>
 
     <div id="newQuestionContainer"></div>
 
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
