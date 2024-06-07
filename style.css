@@ -13,7 +13,7 @@ body {
   background-color: #e6f7ff;
 }
 
-.container, .options-container, .quiz-container {
+.container, .options-container, .quiz-container, .end-screen {
   background-color: #f9f9f9;
   border: 2px solid #008cba;
   border-radius: 10px;
@@ -43,7 +43,7 @@ body {
   padding: 10px 0;
 }
 
-.main, .options-content, .quiz-content {
+.main, .options-content, .quiz-content, .end-content {
   padding: 20px;
 }
 
@@ -64,7 +64,7 @@ body {
   margin: 10px 0;
 }
 
-.buttons, .quiz-buttons {
+.buttons, .quiz-buttons, .end-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -254,4 +254,31 @@ input:checked + .slider:before {
 .incorrect {
   background-color: red;
   color: white;
+}
+
+.end-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.end-content {
+  text-align: center;
+}
+
+.end-content h1 {
+  font-size: 2em;
+  color: #008cba;
+  margin-bottom: 20px;
+}
+
+.end-content .score {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.end-buttons .btn {
+  margin-top: 10px;
 }

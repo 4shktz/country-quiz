@@ -4,7 +4,7 @@
             url: "https://res.cloudinary.com/dthx1napk/image/upload/v1717752407/flags/w4avfyvwmtfaocpeepur.png"
         },
         {
-            name: "'ViêtNam", 
+            name: "Viêtnam", 
             url: "https://res.cloudinary.com/dthx1napk/image/upload/v1717752406/flags/rsmigkqakijwq5qakqgr.png"
         },
         {
@@ -104,7 +104,7 @@
             url: "https://res.cloudinary.com/dthx1napk/image/upload/v1717752401/flags/dxnt4cnnv7djmsjqmrtg.png"
         },
         {
-            name: "Sri Lanka", 
+            name: "Suede", 
             url: "https://res.cloudinary.com/dthx1napk/image/upload/v1717752401/flags/oufrjdto2cykntdkacf8.png"
         },
         {

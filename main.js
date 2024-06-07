@@ -5,17 +5,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const backBtn = document.getElementById('backBtn');
     const playBtn = document.getElementById('playBtn');
     const backToMainBtn = document.getElementById('backToMainBtn');
+    const playAgainBtn = document.getElementById('playAgainBtn');
+    const stopBtn = document.getElementById('stopBtn');
     const mainContainer = document.getElementById('mainContainer');
     const optionsContainer = document.getElementById('optionsContainer');
     const quizContainer = document.getElementById('quizContainer');
+    const endScreen = document.getElementById('endScreen');
     const questionCounter = document.getElementById('questionCounter');
     const flagImage = document.querySelector('.flag-image');
     const scoreDisplay = document.getElementById('score');
-    const newQuestionContainer = document.getElementById('newQuestionContainer');
-
+    const finalScore = document.getElementById('finalScore');
+    const totalQuestionsDisplay = document.getElementById('totalQuestions');
+    
     let score = 0;
     let questionNumber = 1;
-    let totalQuestions = 25; 
+    let totalQuestions = 25; // Default number of questions
 
     function resetOptions() {
         const quizOptions = document.querySelectorAll('.quiz-option');
@@ -36,8 +40,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function loadNextFlag() {
         if (questionNumber > totalQuestions) {
             quizContainer.style.display = 'none';
-            newQuestionContainer.textContent = 'Bien joué!';
-            newQuestionContainer.style.display = 'block';
+            finalScore.textContent = score;
+            totalQuestionsDisplay.textContent = totalQuestions;
+            endScreen.style.display = 'flex'; // Affiche endScreen seulement quand le jeu est fini
             return;
         }
 
@@ -92,6 +97,21 @@ document.addEventListener("DOMContentLoaded", function() {
         mainContainer.style.display = 'block';
     });
 
+    playAgainBtn.addEventListener('click', () => {
+        endScreen.style.display = 'none';
+        mainContainer.style.display = 'none';
+        quizContainer.style.display = 'block';
+        score = 0;
+        questionNumber = 1;
+        scoreDisplay.textContent = score;
+        loadNextFlag();
+    });
+
+    stopBtn.addEventListener('click', () => {
+        endScreen.style.display = 'none';
+        mainContainer.style.display = 'block';
+    });
+
     const quizOptions = document.querySelectorAll('.quiz-option');
     quizOptions.forEach(option => {
         option.addEventListener('click', function() {
@@ -118,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 setTimeout(() => {
                     loadNextFlag();
-                }, 2000); 
+                }, 2000);
             }
         });
     });
@@ -126,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const numberOptions = document.querySelectorAll('input[name="flags"]');
     numberOptions.forEach(option => {
         option.addEventListener('change', () => {
-            totalQuestions = parseInt(option.value); 
-            questionCounter.textContent = `${questionNumber}/${totalQuestions}`; 
+            totalQuestions = parseInt(option.value);
+            questionCounter.textContent = `${questionNumber}/${totalQuestions}`;
         });
     });
 });
