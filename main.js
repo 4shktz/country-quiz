@@ -8,13 +8,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const mainContainer = document.getElementById('mainContainer');
     const optionsContainer = document.getElementById('optionsContainer');
     const quizContainer = document.getElementById('quizContainer');
-    const nextBtn = document.getElementById('nextBtn');
     const questionCounter = document.getElementById('questionCounter');
     const flagImage = document.querySelector('.flag-image');
     const scoreDisplay = document.getElementById('score');
+    const newQuestionContainer = document.getElementById('newQuestionContainer');
 
     let score = 0;
     let questionNumber = 1;
+    let totalQuestions = 25;
 
     function resetOptions() {
         const quizOptions = document.querySelectorAll('.quiz-option');
@@ -22,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
             option.disabled = false;
             option.classList.remove('correct', 'incorrect');
         });
-        nextBtn.style.display = 'none';
     }
 
     function shuffle(array) {
@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function loadNextFlag() {
+        if (questionNumber > totalQuestions) {
+            quizContainer.style.display = 'none';
+            newQuestionContainer.textContent = 'Bien joué!';
+            newQuestionContainer.style.display = 'block';
+            return;
+        }
+
         const randomIndex = Math.floor(Math.random() * countries.length);
         const selectedCountry = countries[randomIndex];
 
@@ -60,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         resetOptions();
+        questionCounter.textContent = `${questionNumber}/${totalQuestions}`;
+        questionNumber++;
     }
 
     optionsBtn.addEventListener('click', () => {
@@ -106,14 +115,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
                 scoreDisplay.textContent = score;
-                nextBtn.style.display = 'block';
+
+                setTimeout(() => {
+                    loadNextFlag();
+                }, 2000); 
             }
         });
-    });
-
-    nextBtn.addEventListener('click', () => {
-        questionNumber++;
-        questionCounter.textContent = `${questionNumber}/25`;
-        loadNextFlag();
     });
 });
